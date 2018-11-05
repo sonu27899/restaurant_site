@@ -1,0 +1,77 @@
+<form (ngSubmit)="onAdd()" #f1="ngForm">
+  <h1 style="text-align:center;margin-left:200px;">SignUp Form</h1>
+  <br>
+  <h4>Email</h4>
+  <mat-form-field class="example-full-width">
+    <input matInput required email type="email" id="user_email" name="user_email" [(ngModel)]="user_email" #useremail="ngModel">
+  </mat-form-field>
+  <div [hidden]="useremail.valid || useremail.untouched">
+    <div [hidden]="useremail.errors?.required" class="alert alert-danger">
+      Please Enter Valid User_Email.
+    </div>
+    <div [hidden]="!useremail.errors?.required" class="alert alert-danger">
+      Please Enter User_Email.
+    </div>
+  </div>
+  <h4>Password</h4>
+  <mat-form-field class="example-full-width">
+    <input matInput required type="password" id="user_password" name="user_password" [(ngModel)]="user_password" #userpassword="ngModel">
+  </mat-form-field>
+  <div [hidden]="userpassword.valid || userpassword.untouched">
+    <div [hidden]="!userpassword.errors?.required" class="alert alert-danger">
+      Please Enter Password.
+    </div>
+  </div>
+  <h4>Mobile No.</h4>
+  <mat-form-field class="example-full-width">
+    <input matInput required minlength="10" maxlength="10" type="text" id="Mobile" name="Mobile" [(ngModel)]="Mobile" #Mobile1="ngModel">
+  </mat-form-field>
+  <div [hidden]="Mobile1.valid || Mobile1.untouched">
+
+    <div [hidden]="!Mobile1.errors?.required" class="alert alert-danger">
+      Please Enter Mobile No.
+    </div>
+    <div [hidden]="!Mobile1.errors?.minlength" class="alert alert-danger">
+      Please Enter Valid No.
+    </div>
+  </div>
+
+  <h4>City</h4>
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" required id="City" name="City" [(ngModel)]="City" #City1="ngModel">
+  </mat-form-field>
+  <div [hidden]="City1.valid || City1.untouched">
+    <div [hidden]="!City1.errors?.required" class="alert alert-danger">
+      Please Enter City.
+    </div>
+  </div>
+  <h4>Gender</h4>
+  <mat-form-field class="example-full-width">
+    <mat-select [(value)]="Gender" name="Gender">
+      <mat-option value="Male">Male</mat-option>
+      <mat-option value="Female">Female</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <!-- <div [hidden]="Gender1.valid || Gender1.untouched">
+    <div [hidden]="!Gender1.errors.required" class="alert alert-danger">
+      Please Choose Gender.
+    </div>
+  </div> -->
+  <h4>Address</h4>
+  <mat-form-field class="example-full-width">
+    <textarea matInput type="text" required id="Address" name="Address" #Address1="ngModel" cols="80" rows="3" [(ngModel)]="Address"></textarea>
+  </mat-form-field>
+  <div [hidden]="Address1.valid || Address1.untouched">
+    <div [hidden]="!Address1.errors?.required" class="alert alert-danger">
+      Please Enter Address.
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <button type="submit" [disabled]="!f1.valid" class="btn btn-default" aria-label="Left Align" style="width:250px;">SignUp</button>
+    </div>
+    <div class="col-md-3">
+      <button type="button" class="btn btn-default" aria-label="Left Align" routerLink="" style="width:250px;">Cancel</button>
+    </div>
+  </div>
+</form>

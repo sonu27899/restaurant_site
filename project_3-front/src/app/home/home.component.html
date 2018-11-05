@@ -1,0 +1,129 @@
+<div class="container">
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+          aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand">$ONU</a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active">
+            <a routerLink="/pastorder" aria-label="Right Align">Past Order
+              <span class="sr-only"></span>
+            </a>
+          </li>
+          <li class="active">
+            <a routerLink="" aria-label="Right Align">Log Out
+              <span class="sr-only"></span>
+            </a>
+          </li>
+          <li class="active">
+            <a routerLink="/Admin" aria-label="Right Align">Admin
+              <span class="sr-only"></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <br>
+  <div class="row">
+    <div class="col-md-2">
+      <ul class="list-group" *ngFor="let item of cusine_arr">
+        <li class="list-group-item" (click)="onClick(item.cusine_name)">{{item.cusine_name}}</li>
+
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div *ngFor="let item of cusine_dish_arr,let i=index" class="col-sm-6 col-md-4">
+          <button type="button" class="list-group-item" (click)="ondish(item,i)">
+            <div class="thumbnail">
+              <img src="http://localhost:3000/images/restaurant_image/{{item.dish_img}}" alt="..." height="150px" width="150px">
+              <div class="caption">
+                <h4>{{item.dish_name}}</h4>
+                <h4>Price : {{item.dish_price}}</h4>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="Image">
+          <th mat-header-cell *matHeaderCellDef>Image </th>
+          <td mat-cell *matCellDef="let element">
+            <img src="http://localhost:3000/images/restaurant_image/{{element.dish_img}}" alt="..." style="height: 30px;width:30px;border-radius: 20px;">
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.dish_name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Qty">
+          <th mat-header-cell *matHeaderCellDef> Qty </th>
+          <input type="number" *ngFor="let element,let i=index" style="width: 50px;" (change)="onChange(element,i)" [(ngModel)]="qtyarr[i]">
+        </ng-container>
+
+        <ng-container matColumnDef="Price">
+          <th mat-header-cell *matHeaderCellDef> Price </th>
+          <td mat-cell *matCellDef="let element,let i=index"> {{pricearr[i]}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Remark">
+          <th mat-header-cell *matHeaderCellDef> Remark </th>
+          <td mat-cell *matCellDef="let element,let i=index">
+            <input type="text" [(ngModel)]="remarkarr[i]" value=" ">
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table> -->
+
+      <div class="row">
+        <h1>BILL</h1>
+      </div>
+      <table class="table">
+        <th></th>
+        <th>Name &nbsp;</th>
+        <th>Qty &nbsp;</th>
+        <th>Price &nbsp;</th>
+        <th>Remark &nbsp;</th>
+        <tr *ngFor="let item of bill;let i=index">
+          <td>
+            <img src="http://localhost:3000/images/restaurant_image/{{item.dish_img}}" alt="..." style="height: 30px;width:30px;border-radius: 20px;">
+          </td>
+          <td>{{item.dish_name}}</td>
+          <td>
+            <input type="number" style="width: 50px;" (change)="onChange(item,i)" [(ngModel)]="qtyarr[i]">
+          </td>
+          <td>{{pricearr[i]}}</td>
+          <td>
+            <input type="text" [(ngModel)]="remarkarr[i]" value=" ">
+          </td>
+          <td>
+            <button type="button" class="btn btn-default" aria-label="Left Align" (click)="onDelete(i)">
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            </button>
+          </td>
+
+        </tr>
+      </table>
+      <div class="row">
+        <h1>Total : {{amount}}</h1>
+        <button *ngIf="bill.length>0" class="btn btn-primary" (click)="onClickPayment()">Payment</button>
+      </div>
+    </div>
+
+  </div>
+</div>
